@@ -82,7 +82,6 @@ function menu(){
         <li><a href='calender-event.html'><i class='mdi mdi-calendar-check'></i> <span class='nav-text'>Calendar</span></a></li>
         <li><a href='widget-basic-card.html'><i class='mdi mdi-widgets'></i> <span class='nav-text'>Widget</span></a>
         </li>
-    
     ";
 }
 
