@@ -57,7 +57,7 @@ function _bill_data($response){
             $semester = $r['semester_id'];
             $yr = $r['academic_yr'];
             $level = $r['level_id'];
-            $amt = $r['bill'];
+            $amt = number_format($r['bill'],2);
             $data.= "
             <tr>
                 <td>{$ref}</td>
@@ -93,7 +93,7 @@ function _payment_data($response){
             $semester = $r['semester_id'];
             $yr = $r['academic_yr'];
             $level = $r['level_id'];
-            $amt = $r['bill'];
+            $amt = number_format($r['paid'],2);
             $data.= "
             <tr>
                 <td>{$ref}</td>
@@ -109,7 +109,6 @@ function _payment_data($response){
     }
     return $data;
 }
-
 
 function _statement_data($response){
 
@@ -129,19 +128,19 @@ function _statement_data($response){
             if(!isset($r['bill'])){
                 $bill = 0;
             }else{
-                $bill = $r['bill'];
+                $bill = number_format($r['bill'],2);
             }
 
             if(!isset($r['paid'])){
                 $paid = 0;
             }else{
-                $paid = $r['paid'];
+                $paid = number_format($r['paid'],2);
             }
 
             if(!isset($r['bal'])){
                 $balance = 0;
             }else{
-                $balance = $r['bal'];
+                $balance = number_format($r['bal'],2);
             }
 
             if(!isset($n)){

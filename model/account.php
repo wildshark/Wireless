@@ -1,17 +1,18 @@
 <?php
 class account{
 
-    public static function login($conn,$r){
+    public static function login($conn,$request){
 
-        if($r[0] !== "admin@admin.com" && $r[1] !== "pass"){
-            return false;
-        }else{
-            return array(
-                "user_id"=>1,
-                "route"=>"dashboard",
-                "token"=> uniqid()
-            );
-        }
+        $sql ="SELECT
+        admin_account.*
+    FROM
+        admin_account
+    WHERE
+        admin_account.email = ? AND
+        admin_account.`password` = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($request);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>

@@ -15,7 +15,7 @@ $_TEMPLATE = array(
     "login"=>"template/login.php",
     "main"=>"template/dashboard.php",
     "table"=>"template/table.php",
-    "add-student"=>"template/add.student.php"
+    "student-form"=>"template/add.student.php"
 );
 
 $_REGLION=[];
@@ -49,6 +49,13 @@ function menu(){
     <li class='nav-label'>Main</li>
         <li><a href='?route=dashboard'><i class=' mdi mdi-view-dashboard'></i> <span class='nav-text'>Dashboard</span></a></li>
         <li class='nav-label'>Components</li>
+        <li><a class='has-arrow' href='#' aria-expanded='false'><i class='mdi mdi-email'></i> <span class='nav-text'>Student</span></a>
+            <ul aria-expanded='false'>
+                <li><a href='?route=student&ui=new'>New Student</a>
+                </li>
+                <li><a href='?route=student&ui=list'>Profile</a>
+            </ul>
+        </li>
         <li><a href='?route=student'><i class='mdi mdi-calendar-check'></i> <span class='nav-text'>Student</span></a></li>
         <li><a href='calender-event.html'><i class='mdi mdi-calendar-check'></i> <span class='nav-text'>New Bill</span></a></li>
         <li><a href='widget-basic-card.html'><i class='mdi mdi-widgets'></i> <span class='nav-text'>New Payment</span></a></li>
