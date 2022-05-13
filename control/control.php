@@ -9,6 +9,37 @@ function connection($_dbconn){
 }
 
 function __webpage($conn,$template,$lbl,$req){
+    
+    $_GENDER =[
+        "Male",
+        "Female",
+        "Others"
+    ];
+    
+    $_STREAM = [
+        'Regular',
+        'Weekend'
+    ];
+    
+    $_SEMESTER =[
+        "1st Semester",
+        "2nd Semester"
+    ];
+    
+    $_LEVEL = [
+        100,
+        200,
+        300,
+        400
+    ];
+
+    $_SCHOOL = [
+        "STM",
+        "SST",
+        "SPS",
+        "SDM"
+    ];
+
     switch($req['route']){
 
         case"dashboard";
@@ -17,6 +48,19 @@ function __webpage($conn,$template,$lbl,$req){
 
         case"student";
             if($req['ui'] === "new"){
+                $fname = "";
+                $mname = "";
+                $sname = "";
+                $yr = "";
+                $admission = "";
+                $dob = "";
+                $nationality = "";
+                $gender = "";
+                $religion = "";
+                $email = "";
+                $password = "";
+                $school = "";
+                $stream = "";
                 $page = $template['student-form'];
             }elseif($req['ui'] ==="list"){
                 $table_header ="

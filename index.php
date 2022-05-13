@@ -2,8 +2,8 @@
 session_start();
 
 include("control/global.php");
-include("control/control.php");
 include("control/function.php");
+include("control/control.php");
 include("model/student.php");
 include("model/account.php");
 include("model/transaction.php");

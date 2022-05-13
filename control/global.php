@@ -20,28 +20,7 @@ $_TEMPLATE = array(
 
 $_REGLION=[];
 
-$_GENDER =[
-    "Male",
-    "Female",
-    "Others"
-];
 
-$_STREAM = [
-    'Regular',
-    'Weekend'
-];
-
-$_SEMESTER =[
-    "1st Semester",
-    "2nd Semester"
-];
-
-$_LEVEL = [
-    100,
-    200,
-    300,
-    400
-];
 
 function menu(){
 

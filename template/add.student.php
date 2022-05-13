@@ -272,74 +272,72 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label>First Name</label>
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                <input type="text" class="form-control" value="<?=$fname?>" placeholder="Email">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Mid. Name</label>
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input type="text" class="form-control" value="<?=$mname?>" placeholder="Password">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Surname</label>
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input type="text" class="form-control" value="<?=$sname?>" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Entry Year</label>
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                <input type="text" class="form-control" value="<?=$yr?>" placeholder="Email">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Admission Index</label>
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input type="text" class="form-control" value="<?=$admission?>" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Birth Date</label>
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                <input type="date" class="form-control" value="<?=$dob?>" placeholder="Email">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Nationality</label>
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input type="text" class="form-control" value="<?=$nationality?>" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Gender</label>
                                                 <select id="inputState" class="form-control">
-                                                    <option selected="selected">Choose...</option>
+                                                    <option selected="selected"><?=$gender?>"</option>
                                                     <?=combobox($_GENDER)?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Religion</label>
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input type="password" class="form-control" value="<?=$religion?>" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Email</label>
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                <input type="email" class="form-control" value="<?=$email?>" placeholder="Email">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Password</label>
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input type="password" class="form-control" value="<?=$password?>" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>School</label>
                                                 <select id="inputState" class="form-control">
-                                                    <option selected="selected">Choose...</option>
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
+                                                    <option selected="selected"><?=$school?></option>
+                                                    <?=combobox($_SCHOOL)?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Stream</label>
                                                 <select id="inputState" class="form-control">
-                                                    <option selected="selected">Choose...</option>
+                                                    <option selected="selected"><?=$stream?></option>
                                                     <?=combobox($_STREAM)?>
                                                 </select>
                                             </div>
