@@ -176,7 +176,11 @@ function __webpage($conn,$template,$lbl,$req){
             require($template['table']);
         break;
 
-        case"wireless-token";
+        case"wifi";
+            if($req['ui'] === "pin-generator"){
+                var_dump($_REQUEST);
+                exit;
+            }
 
         break;
     }
@@ -272,8 +276,16 @@ function __moducles($conn,$template,$lbl,$req){
                 $q[] = $req['ref'];
                 $q[] = $req['amount'];
                 $response = transaction::add_bill($conn,$q);
-                var_dump($response);
-                exit;
+                if($response == false){
+                    $url['route'] = "transaction";
+                    $url['ui'] ="bill";
+                    $url['status'] =100;
+
+                }else{
+                    $url['route'] = "transaction";
+                    $url['ui'] ="bill";
+                    $url['status'] =200;
+                }
             }
         break;
 
@@ -293,9 +305,28 @@ function __moducles($conn,$template,$lbl,$req){
                 $q[] = $req['level'];
                 $q[] = $req['ref'];
                 $q[] = $req['amount'];
-                $response = transaction::add_bill($conn,$q);
-                var_dump($response);
-                exit;
+                $response = transaction::add_payment($conn,$q);
+                if($response == false){
+                    $url['route'] = "transaction";
+                    $url['ui'] ="payment";
+                    $url['status'] =100;
+
+                }else{
+                    $verify = $search['student_id'];
+                    $response = transaction::verification($conn,$verify);
+                    if($response === 'below-payment'){
+                        $url['route'] = "transaction";
+                        $url['ui'] ="payment";
+                        $url['status'] ="fees payment is below 70%";  
+                    }else{
+                        $url['route'] = "wifi";
+                        $url['ui'] ="pin-generator";
+                        $url['student'] = $search;
+                        $url['token'] = uniqid();
+                        $url['status'] =200;
+                    }
+                    
+                }
             }
         break;
     }

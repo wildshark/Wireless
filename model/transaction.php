@@ -1,17 +1,17 @@
 <?php
 class transaction{
 
-    public static function add_bill($conn,$r){
+    public static function add_bill($conn,$request){
 
         $sql ="INSERT INTO `fees_ledger`(`student_id`, `tran_clock`, `tran_date`, `semester_id`, `academic_yr`, `level_id`, `ref`, `bill`) VALUES (? ,?, ?, ?, ?, ?, ?,?)";
         $stmt = $conn->prepare($sql);
-        return $stmt->execute();
+        return $stmt->execute($request);
     }
 
-    public static function add_payment($conn,$r){
+    public static function add_payment($conn,$request){
         $sql ="INSERT INTO `fees_ledger`(`student_id`, `tran_clock`, `tran_date`, `semester_id`, `academic_yr`, `level_id`, `ref`, `paid`) VALUES (? ,?, ?, ?, ?, ?, ?,?)";
         $stmt = $conn->prepare($sql);
-        return $stmt->execute();
+        return $stmt->execute($request);
     }
 
     public static function fetch_bill($conn){
@@ -146,6 +146,34 @@ class transaction{
          $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
  
          return $data;
+    }
+
+    public static function verification($conn,$request){
+
+        $sql ="SELECT
+        student_id, 
+        sum(fees_ledger.bill) AS bill, 
+        sum(fees_ledger.paid) AS paid, 
+        sum( fees_ledger.bill - fees_ledger.paid ) AS bal
+    FROM
+        fees_ledger
+    WHERE
+        fees_ledger.student_id = ?
+    GROUP BY
+        fees_ledger.student_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($request);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $percentage = $data['bill'] * 0.7;
+        $payment = $data['paid'];
+        if($percentage > $payment){
+            $response = "below-payment"; 
+        }else{
+            $response = "above-payment";
+        }
+
+        return $response;
     }
 
 
