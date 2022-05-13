@@ -270,80 +270,65 @@
                                 <div class="basic-form">
                                     <form>
                                         <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <label>First Name</label>
-                                                <input type="text" name="fname" class="form-control" value="<?=$fname?>" placeholder="First Name">
+                                            <div class="form-group col-md-3">
+                                                <label>Ref</label>
+                                                <input type="text" name="ref" class="form-control" value="<?=$ref?>" placeholder="Bill Number">
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <label>Mid. Name</label>
-                                                <input type="text" name="mname" class="form-control" value="<?=$mname?>" placeholder="Mid. Name">
+                                            <div class="form-group col-md-3">
+                                                <label>Date</label>
+                                                <input type="date" name="date" class="form-control" value="<?=$date?>" placeholder="DD-MM-YY">
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <label>Surname</label>
-                                                <input type="text" name="surname" class="form-control" value="<?=$sname?>" placeholder="Surname">
+                                            <div class="form-group col-md-3">
+                                                <label>Academic Year</label>
+                                                <input type="text" name="year" class="form-control" value="<?=$year?>" placeholder="Year eg. 2022/2023">
                                             </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Entry Year</label>
-                                                <input type="text" name="year" class="form-control" value="<?=$yr?>" placeholder="Entry Year">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Admission Index</label>
-                                                <input type="text" name="admission" class="form-control" value="<?=$admission?>" placeholder="Admission Index">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Birth Date</label>
-                                                <input type="date" name="dob" class="form-control" value="<?=$dob?>" placeholder="Birth Date">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Nationality</label>
-                                                <input type="text" name="nationality" class="form-control" value="<?=$nationality?>" placeholder="Nationality">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Gender</label>
-                                                <select name="gender" class="form-control">
-                                                    <option selected="selected"><?=$gender?>"</option>
-                                                    <?=combobox($_GENDER)?>
+                                            <div class="form-group col-md-3">
+                                                <label>Semester</label>
+                                                <select name="semester" class="form-control">
+                                                    <option selected="selected"><?=$semester?></option>
+                                                    <?=combobox($_SEMESTER)?>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Religion</label>
-                                                <input type="text" name="religion" class="form-control" value="<?=$religion?>" placeholder="Religion">
+                                            <div class="form-group col-md-9">
+                                                <label>Index</label>
+                                                <input type="text" name="student" class="form-control" value="<?=$student?>" placeholder="Student Index Number">
                                             </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Email</label>
-                                                <input type="email" name="email" class="form-control" value="<?=$email?>" placeholder="Email">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Mobile</label>
-                                                <input type="text" name="mobile" class="form-control" value="<?=$mobile?>" placeholder="Mobile">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>School</label>
-                                                <select name="school" class="form-control">
-                                                    <option selected="selected"><?=$school?></option>
-                                                    <?=combobox($_SCHOOL)?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Stream</label>
-                                                <select name="stream" class="form-control">
-                                                    <option selected="selected"><?=$stream?></option>
-                                                    <?=combobox($_STREAM)?>
-                                                </select>
+                                            <div class="form-group col-md-3">
+                                                <label>Amount</label>
+                                                <input type="text" name="amount" class="form-control" value="<?=$amount?>" placeholder="0.00">
                                             </div>
                                         </div>                                        
                                         <button type="submit" name="submit" value="<?=$btn?>" class="btn btn-dark">Submit</button>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4>Table Striped</h4>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Admission</th>
+                                                <th>Yr</th>
+                                                <th>Semester</th>
+                                                <th>Level</th>
+                                                <th>Ref</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?=$datasheet?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

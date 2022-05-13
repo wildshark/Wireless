@@ -3,10 +3,15 @@ class transaction{
 
     public static function add_bill($conn,$r){
 
+        $sql ="INSERT INTO `fees_ledger`(`student_id`, `tran_clock`, `tran_date`, `semester_id`, `academic_yr`, `level_id`, `ref`, `bill`) VALUES (? ,?, ?, ?, ?, ?, ?,?)";
+        $stmt = $conn->prepare($sql);
+        return $stmt->execute();
     }
 
     public static function add_payment($conn,$r){
-
+        $sql ="INSERT INTO `fees_ledger`(`student_id`, `tran_clock`, `tran_date`, `semester_id`, `academic_yr`, `level_id`, `ref`, `paid`) VALUES (? ,?, ?, ?, ?, ?, ?,?)";
+        $stmt = $conn->prepare($sql);
+        return $stmt->execute();
     }
 
     public static function fetch_bill($conn){
@@ -35,6 +40,34 @@ class transaction{
 
     }
 
+    public static function fetch_limit_bill($conn){
+
+        $sql ="SELECT
+        fees_ledger.*, 
+        student.fname, 
+        student.mname, 
+        student.sname, 
+        student.admission
+    FROM
+        fees_ledger
+        INNER JOIN
+        student
+        ON 
+            fees_ledger.student_id = student.student_id
+    WHERE
+        fees_ledger.bill > 0
+    ORDER BY
+        fees_ledger.ledger_id DESC
+    LIMIT 0, 10";
+     $stmt = $conn->prepare($sql);
+     $stmt->execute();
+     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+     return $data;
+
+    }
+
+
     public static function fetch_payment($conn){
         
         $sql ="SELECT
@@ -58,6 +91,33 @@ class transaction{
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $data;
+    }
+
+    public static function fetch_limit_payment($conn){
+
+        $sql ="SELECT
+        fees_ledger.*, 
+        student.fname, 
+        student.mname, 
+        student.sname, 
+        student.admission
+    FROM
+        fees_ledger
+        INNER JOIN
+        student
+        ON 
+            fees_ledger.student_id = student.student_id
+    WHERE
+        fees_ledger.paid > 0
+    ORDER BY
+        fees_ledger.ledger_id DESC
+    LIMIT 0, 10";
+     $stmt = $conn->prepare($sql);
+     $stmt->execute();
+     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+     return $data;
+
     }
 
     public static function fetch_statement($conn){

@@ -58,9 +58,29 @@ function __webpage($conn,$template,$lbl,$req){
                 $gender = "";
                 $religion = "";
                 $email = "";
-                $password = "";
+                $mobile = "";
                 $school = "";
                 $stream = "";
+                $btn = "add-student";
+                $page = $template['student-form'];
+            }elseif($req['ui'] === "update"){
+                $q[] = $_GET['student'];
+                $st = student::view($conn,$q);
+                $fname = $st['fname'];
+                $mname = $st['mname'];
+                $sname = $st['sname'];
+                $yr = $st['entery_yr'];
+                $admission = $st['admission'];
+                $dob = $st['dob'];
+                $nationality = $st['nationality'];
+                $gender = $st['gender'];
+                $religion = $st['religion'];
+                $email = $st['email'];
+                $mobile = $st['mobile'];
+                $school = $st['school_id'];
+                $stream = $st['stream'];
+                $_SESSION['sudent_id'] = $st['student_id'];
+                $btn = "update-student";
                 $page = $template['student-form'];
             }elseif($req['ui'] ==="list"){
                 $table_header ="
@@ -73,9 +93,34 @@ function __webpage($conn,$template,$lbl,$req){
                         <th>Salary</th>
                     </tr>
                 ";
-                $datasheet = student::fetch_student($conn);
+                $datasheet = student::fetch($conn);
                 $datasheet = _student_data($datasheet);
                 $page = $template['table'];
+            }
+            require($page);
+        break;
+
+        case"transaction";
+            if($req['ui'] == "bill"){
+                $ref="BL".time();
+                $date= date("mm/dd/yyy");
+                $student="";
+                $year="";
+                $semester="";
+                $amount="";
+                $datasheet = transaction::fetch_limit_bill($conn);
+                $datasheet = current_bill_generated($datasheet);
+                $page = $template['bill-form'];
+            }elseif($req['ui'] == "payment"){
+                $ref="PP".time();
+                $date= date("mm/dd/yyy");
+                $student="";
+                $year="";
+                $semester="";
+                $amount="";
+                $datasheet = transaction::fetch_limit_payment($conn);
+                $datasheet = current_payment_maked($datasheet);
+                $page = $template['payment-form'];
             }
             require($page);
         break;
@@ -148,6 +193,106 @@ function __moducles($conn,$template,$lbl,$req){
                 $url['route'] = "dashboard";
                 $url['status'] = true;
             }   
+        break;
+
+        case"add-student";
+            $q[] = $req['fname'];
+            $q[] = $req['mname'];
+            $q[] = $req['surname'];
+            $q[] = $req['admission'];
+            $q[] = $req['dob'];
+            $q[] = $req['email'];
+            $q[] = $req['mobile'];
+            $q[] = $req['religion'];
+            $q[] = $req['gender'];
+            $q[] = $req['year'];
+            $q[] = $req['nationality'];
+            $q[] = $req['stream'];
+            $q[] = $req['school'];
+            $response = student::add($conn,$q);
+            if($response == false){
+                $url['route']="student";
+                $url['ui']="new";
+                $url['status']=100;
+            }else{
+                $url['route']="student";
+                $url['ui']="update";
+                $url['student']=$response;
+                $url['status']=200;
+            }
+        break;
+
+        case"update-student";
+            $q[] = $req['fname'];
+            $q[] = $req['mname'];
+            $q[] = $req['surname'];
+            $q[] = $req['admission'];
+            $q[] = $req['dob'];
+            $q[] = $req['email'];
+            $q[] = $req['mobile'];
+            $q[] = $req['religion'];
+            $q[] = $req['gender'];
+            $q[] = $req['year'];
+            $q[] = $req['nationality'];
+            $q[] = $req['stream'];
+            $q[] = $req['school'];
+            $q[] = $_SESSION['sudent_id'];
+            $response = student::update($conn,$q);
+            if($response == false){
+                $url['route']="student";
+                $url['ui']="update";
+                $url['student']=$_SESSION['sudent_id'];
+                $url['status']=100;
+            }else{
+                $url['route']="student";
+                $url['ui']="update";
+                $url['student']=$_SESSION['sudent_id'];
+                $url['status']=200;
+            }
+        break;
+
+        case"add-bill";
+
+            $search = student::search($conn,$req['student']);
+            if($search == false){
+                $url['route'] = "transaction";
+                $url['ui'] ="bill";
+                $url['status'] ="student not found";
+            }else{
+                $q[] = $search['student_id'];
+                $q[] = date("mm-dd-yy H:i:s");
+                $q[] = $req['date'];
+                $q[] = $req['semester'];
+                $q[] = $req['year'];
+                $q[] = $req['level'];
+                $q[] = $req['ref'];
+                $q[] = $req['amount'];
+                $response = transaction::add_bill($conn,$q);
+                var_dump($response);
+                exit;
+            }
+        break;
+
+        case"add-payment";
+
+            $search = student::search($conn,$req['student']);
+            if($search == false){
+                $url['route'] = "transaction";
+                $url['ui'] ="bill";
+                $url['status'] ="student not found";
+            }else{
+                $q[] = $search['student_id'];
+                $q[] = date("mm-dd-yy H:i:s");
+                $q[] = $req['date'];
+                $q[] = $req['semester'];
+                $q[] = $req['year'];
+                $q[] = $req['level'];
+                $q[] = $req['ref'];
+                $q[] = $req['amount'];
+                $response = transaction::add_bill($conn,$q);
+                var_dump($response);
+                exit;
+            }
         break;
     }
 

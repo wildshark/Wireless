@@ -20,10 +20,12 @@ function _student_data($response){
             }else{
                 $name = $r['fname']." ".$r['mname']." ".$r['sname'];
             }
+            $id = $r['student_id'];
             $admission = $r['admission'];
             $mobile = $r['mobile'];
             $stream = $r['stream'];
             $yr = $r['entery_yr'];
+            $url = "?route=student&ui=update&student=".$id;
             $data.= "
                 <tr>
                     <td>{$name}</td>
@@ -31,7 +33,7 @@ function _student_data($response){
                     <td>{$mobile}</td>
                     <td>{$yr}</td>
                     <td>{$stream}</td>                
-                    <td>$320,800</td>
+                    <td><a href='{$url}'>view</a></td>
                 </tr>
             ";
         }
@@ -158,6 +160,96 @@ function _statement_data($response){
                 <td>{$paid}</td>
                 <td>{$balance}</td>
             </tr>
+            ";
+        }
+    }
+    return $data;
+}
+
+function current_bill_generated($response){
+    $data ="";
+    if($response == false){
+        $data ="";
+    }else{
+        foreach($response as $r){
+            if((!isset($r['mname']))||($r['mname'] =='')){
+                $name = $r['fname']." ".$r['sname'];
+            }else{
+                $name = $r['fname']." ".$r['mname']." ".$r['sname'];
+            }
+            $ref = $r['ref'];
+            $admission =$r['admission'];
+            $level = $r['level_id'];
+            $semester = $r['semester_id'];
+            $yr = $r['academic_yr'];
+            if(!isset($r['bill'])){
+                $amt = 0;
+            }else{
+                $amt = number_format($r['bill'],2);
+            }
+
+            if(!isset($n)){
+                $n = 1;
+            }else{
+                $n = $n + 1;
+            }
+
+            $data.= "
+                <tr>
+                    <th>{$n}</th>
+                    <td>{$name}</td>
+                    <td>{$admission}</td>
+                    <td>{$yr}</td>
+                    <td>{$semester}</td>
+                    <td>{$level}</td>
+                    <td>{$ref}</td>
+                    <td class='color-primary'>{$amt}</td>
+                </tr>
+            ";
+        }
+    }
+    return $data;
+}
+
+function current_payment_maked($response){
+    $data ="";
+    if($response == false){
+        $data ="";
+    }else{
+        foreach($response as $r){
+            if((!isset($r['mname']))||($r['mname'] =='')){
+                $name = $r['fname']." ".$r['sname'];
+            }else{
+                $name = $r['fname']." ".$r['mname']." ".$r['sname'];
+            }
+            $ref = $r['ref'];
+            $admission =$r['admission'];
+            $level = $r['level_id'];
+            $semester = $r['semester_id'];
+            $yr = $r['academic_yr'];
+            if(!isset($r['paid'])){
+                $amt = 0;
+            }else{
+                $amt = number_format($r['paid'],2);
+            }
+
+            if(!isset($n)){
+                $n = 1;
+            }else{
+                $n = $n + 1;
+            }
+
+            $data.= "
+                <tr>
+                    <th>{$n}</th>
+                    <td>{$name}</td>
+                    <td>{$admission}</td>
+                    <td>{$yr}</td>
+                    <td>{$semester}</td>
+                    <td>{$level}</td>
+                    <td>{$ref}</td>
+                    <td class='color-primary'>{$amt}</td>
+                </tr>
             ";
         }
     }
