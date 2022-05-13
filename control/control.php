@@ -107,7 +107,9 @@ function __webpage($conn,$template,$lbl,$req){
                 $student="";
                 $year="";
                 $semester="";
+                $level ="";
                 $amount="";
+                $btn = "add-bill";
                 $datasheet = transaction::fetch_limit_bill($conn);
                 $datasheet = current_bill_generated($datasheet);
                 $page = $template['bill-form'];
@@ -115,9 +117,11 @@ function __webpage($conn,$template,$lbl,$req){
                 $ref="PP".time();
                 $date= date("mm/dd/yyy");
                 $student="";
+                $level ="";
                 $year="";
                 $semester="";
                 $amount="";
+                $btn = "add-payment";
                 $datasheet = transaction::fetch_limit_payment($conn);
                 $datasheet = current_payment_maked($datasheet);
                 $page = $template['payment-form'];

@@ -268,7 +268,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Vertical Form</h4>
                                 <div class="basic-form">
-                                    <form>
+                                    <form action="index.php" method="post">
                                         <div class="form-row">
                                             <div class="form-group col-md-3">
                                                 <label>Ref</label>
@@ -289,9 +289,16 @@
                                                     <?=combobox($_SEMESTER)?>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-9">
+                                            <div class="form-group col-md-6">
                                                 <label>Index</label>
                                                 <input type="text" name="student" class="form-control" value="<?=$student?>" placeholder="Student Index Number">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label>Level</label>
+                                                <select name="level" class="form-control">
+                                                    <option selected="selected"><?=$level?></option>
+                                                    <?=combobox($_LEVEL)?>
+                                                </select>
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label>Amount</label>
