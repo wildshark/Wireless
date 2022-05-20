@@ -20,7 +20,9 @@ $_TEMPLATE = array(
     "payment-form"=>"template/payment.php"
 );
 
-$_REGLION=[];
+$_REGLION=[
+    "Baha'i", "Buddhism", "Christianity", "Confucianism", "Hinduism", "Islam", "Jainism", "Judaism", "Shinto","Sikhism","Taoism","Zoroastrianism"
+];
 
 function menu(){
 

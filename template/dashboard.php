@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from html.merku.love/ule/main/template-vertical-nav/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 May 2022 19:29:26 GMT -->
 <head>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -575,6 +573,4 @@
     <script src="main/js/dashboard-1.js"></script>
 </body>
 
-
-<!-- Mirrored from html.merku.love/ule/main/template-vertical-nav/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 May 2022 19:30:00 GMT -->
 </html>

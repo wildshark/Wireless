@@ -172,10 +172,7 @@ class transaction{
         }else{
             $response = "above-payment";
         }
-
         return $response;
     }
-
-
 }
 ?>

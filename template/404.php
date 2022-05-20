@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100" id="error">
 
-
-<!-- Mirrored from html.merku.love/ule/main/template-vertical-nav/page-error-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 May 2022 19:31:32 GMT -->
 <head>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -84,6 +82,4 @@
     <script src="../js/custom.min.js"></script>
 </body>
 
-
-<!-- Mirrored from html.merku.love/ule/main/template-vertical-nav/page-error-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 May 2022 19:31:33 GMT -->
 </html>

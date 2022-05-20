@@ -58,8 +58,6 @@ class student{
  
          return $data;
     }
-
-
 }
 
 ?>

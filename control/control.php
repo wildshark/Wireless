@@ -330,7 +330,6 @@ function __moducles($conn,$template,$lbl,$req){
             }
         break;
     }
-
     return $url;
 }
 ?>

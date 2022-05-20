@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from html.merku.love/ule/main/template-vertical-nav/form-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 May 2022 19:31:02 GMT -->
 <head>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -367,6 +365,4 @@
     <script src="main/js/custom.min.js"></script>
 </body>
 
-
-<!-- Mirrored from html.merku.love/ule/main/template-vertical-nav/form-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 May 2022 19:31:02 GMT -->
 </html>
