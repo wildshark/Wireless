@@ -1,5 +1,6 @@
 # Wireless
- School Wireless Token Genrator
+
+School Wireless Token Genrator
 switch($request['submit']){
 
         case"sign-in";

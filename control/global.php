@@ -17,7 +17,8 @@ $_TEMPLATE = array(
     "table"=>"template/table.php",
     "student-form"=>"template/add.student.php",
     "bill-form"=>"template/bill.php",
-    "payment-form"=>"template/payment.php"
+    "payment-form"=>"template/payment.php",
+    "pin-form"=>"template/pin.php"
 );
 
 $_REGLION=[

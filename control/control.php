@@ -178,10 +178,15 @@ function __webpage($conn,$template,$lbl,$req){
 
         case"wifi";
             if($req['ui'] === "pin-generator"){
-                var_dump($_REQUEST);
-                exit;
+                $student = $_GET['student'];
+                $fname = $student['fname'];
+                $mname = $student['mname'];
+                $sname = $student['sname'];
+                $admission = $student['admission'];
+                $token = $_GET['token'];
+                $page = $template['pin-form'];
             }
-
+            require($page);
         break;
     }
 }
