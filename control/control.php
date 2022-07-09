@@ -178,16 +178,41 @@ function __webpage($conn,$template,$lbl,$req){
 
         case"wifi";
             if($req['ui'] === "pin-generator"){
-                $student = $_GET['student'];
+                $student = $_REQUEST['student'];
                 $fname = $student['fname'];
                 $mname = $student['mname'];
                 $sname = $student['sname'];
                 $admission = $student['admission'];
                 $token = $_GET['token'];
+                $mobile = $student['mobile'];
+                $email = $student['email'];
+                $semester = $student['semester_id'];
+                $yrs = $student['academic_yr'];
                 $page = $template['pin-form'];
+                 
+                $uTKN[] = $admission;
+                $uTKN[] = $token;
+                $uTKN[] = $yrs;
+                $uTKN[] = $semester;
+                $response =  student::addToken($conn,$uTKN);
+                if($response === false){
+                    echo"<h1>System error contact administrator";
+                    exit;
+                }else{
+                    $response = SendSMS($mobile,"Your wireless password is ".$token);
+                }
             }
             require($page);
         break;
+
+        case"token";
+            if($req['ui'] ==="list"){
+
+            }elseif($req['ui'] ==="export"){
+                require($template['export-form']);
+            }
+        break;
+
     }
 }
 
@@ -297,6 +322,7 @@ function __moducles($conn,$template,$lbl,$req){
         case"add-payment";
 
             $search = student::search($conn,$req['student']);
+
             if($search == false){
                 $url['route'] = "transaction";
                 $url['ui'] ="bill";
@@ -310,8 +336,8 @@ function __moducles($conn,$template,$lbl,$req){
                 $q[] = $req['level'];
                 $q[] = $req['ref'];
                 $q[] = $req['amount'];
-                $response = transaction::add_payment($conn,$q);
-                if($response == false){
+                $payment = transaction::add_payment($conn,$q);
+                if($payment == false){
                     $url['route'] = "transaction";
                     $url['ui'] ="payment";
                     $url['status'] =100;
@@ -324,15 +350,28 @@ function __moducles($conn,$template,$lbl,$req){
                         $url['ui'] ="payment";
                         $url['status'] ="fees payment is below 70%";  
                     }else{
-                        $url['route'] = "wifi";
-                        $url['ui'] ="pin-generator";
-                        $url['student'] = $search;
-                        $url['token'] = uniqid();
-                        $url['status'] =200;
+                        $response = transaction::view_payment_details($conn,$payment);
+                        if($response == false){
+                            echo "<h1>System Failure Contact Administrator";
+                            exit;
+                        }else{
+                            $url['route'] = "wifi";
+                            $url['ui'] ="pin-generator";
+                            $url['student'] = $response;
+                            $url['token'] = uniqid();
+                            $url['status'] =200;
+                        }
                     }
-                    
                 }
             }
+        break;
+
+        case"export-csv";
+            $yr = $_REQUEST['yrs'];
+            $sem = $_REQUEST['sem'];
+            $response = student::fetchtoken($conn,$yr,$sem);
+            var_dump($response);
+            exit;
         break;
     }
     return $url;

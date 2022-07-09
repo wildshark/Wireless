@@ -11,7 +11,11 @@ class transaction{
     public static function add_payment($conn,$request){
         $sql ="INSERT INTO `fees_ledger`(`student_id`, `tran_clock`, `tran_date`, `semester_id`, `academic_yr`, `level_id`, `ref`, `paid`) VALUES (? ,?, ?, ?, ?, ?, ?,?)";
         $stmt = $conn->prepare($sql);
-        return $stmt->execute($request);
+        if(false == $stmt->execute($request)){
+            return false;
+        }else{
+            return $conn->lastInsertId();
+        }
     }
 
     public static function fetch_bill($conn){
@@ -158,11 +162,11 @@ class transaction{
     FROM
         fees_ledger
     WHERE
-        fees_ledger.student_id = ?
+        fees_ledger.student_id =:id
     GROUP BY
         fees_ledger.student_id";
         $stmt = $conn->prepare($sql);
-        $stmt->execute($request);
+        $stmt->execute([':id'=>$request]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $percentage = $data['bill'] * 0.7;
@@ -173,6 +177,35 @@ class transaction{
             $response = "above-payment";
         }
         return $response;
+    }
+
+    public static function view_payment_details($conn,$request){
+
+        $sql = "SELECT
+        fees_ledger.ledger_id, 
+        fees_ledger.student_id, 
+        fees_ledger.semester_id, 
+        fees_ledger.academic_yr, 
+        fees_ledger.level_id, 
+        student.fname, 
+        student.mname, 
+        student.sname, 
+        student.admission,
+        student.email, 
+	    student.mobile
+    FROM
+        fees_ledger
+        INNER JOIN
+        student
+        ON 
+            fees_ledger.student_id = student.student_id
+    WHERE
+        fees_ledger.ledger_id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':id'=>$request]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+        return $data;
     }
 }
 ?>

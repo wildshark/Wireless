@@ -18,7 +18,8 @@ $_TEMPLATE = array(
     "student-form"=>"template/add.student.php",
     "bill-form"=>"template/bill.php",
     "payment-form"=>"template/payment.php",
-    "pin-form"=>"template/pin.php"
+    "pin-form"=>"template/pin.php",
+    "export-form"=>"template/export.php"
 );
 
 $_REGLION=[
@@ -29,7 +30,7 @@ function menu(){
 
     return"
     <li class='nav-label'>Main</li>
-        <li><a href='?route=dashboard'><i class=' mdi mdi-view-dashboard'></i> <span class='nav-text'>Dashboard</span></a></li>
+        <li><a href='?route=student&ui=list'><i class=' mdi mdi-view-dashboard'></i> <span class='nav-text'>Dashboard</span></a></li>
         <li class='nav-label'>Components</li>
         <li><a class='has-arrow' href='#' aria-expanded='false'><i class='mdi mdi-email'></i> <span class='nav-text'>Student</span></a>
             <ul aria-expanded='false'>
@@ -50,19 +51,14 @@ function menu(){
                 </li>
             </ul>
         </li>
-        <li><a class='has-arrow' href='#' aria-expanded='false'><i class='mdi mdi-email'></i> <span class='nav-text'>Token</span></a>
+        <li><a href='?route=token&ui=export'><i class='mdi mdi-widgets'></i> <span class='nav-text'>Export Token</span></a></li>
+        <!--li><a class='has-arrow' href='#' aria-expanded='false'><i class='mdi mdi-email'></i> <span class='nav-text'>Token</span></a>
             <ul aria-expanded='false'>
-                <li><a href='email-inbox.html'>Generate</a>
+                <li><a href='?route=token&ui=list'>List</a>
                 </li>
-                <li><a href='email-read.html'>Pending Token</a>
-                </li>
-                <li><a href='email-compose.html'>Used Token</a>
-                </li>
+                <li><a href='?route=token&ui=export'>Export</a>
             </ul>
-        </li>
-        <li><a href='calender-event.html'><i class='mdi mdi-calendar-check'></i> <span class='nav-text'>Calendar</span></a></li>
-        <li><a href='widget-basic-card.html'><i class='mdi mdi-widgets'></i> <span class='nav-text'>Widget</span></a>
-        </li>
+        </li-->
     ";
 }
 

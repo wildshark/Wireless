@@ -9,6 +9,15 @@ function combobox($str){
     return $out;
 }
 
+function SendSMS($to,$message){
+
+    $sms['to'] = $to;
+    $sms['sender-id'] = "ghanacuc";
+    $sms['msg'] = $message;
+    return file_get_contents("https://api.iquipedigital.com/sms/?".http_build_query($sms));
+
+}
+
 function _student_data($response){
     $data ="";
     if($response == false){
@@ -212,6 +221,51 @@ function current_bill_generated($response){
 }
 
 function current_payment_maked($response){
+    $data ="";
+    if($response == false){
+        $data ="";
+    }else{
+        foreach($response as $r){
+            if((!isset($r['mname']))||($r['mname'] =='')){
+                $name = $r['fname']." ".$r['sname'];
+            }else{
+                $name = $r['fname']." ".$r['mname']." ".$r['sname'];
+            }
+            $ref = $r['ref'];
+            $admission =$r['admission'];
+            $level = $r['level_id'];
+            $semester = $r['semester_id'];
+            $yr = $r['academic_yr'];
+            if(!isset($r['paid'])){
+                $amt = 0;
+            }else{
+                $amt = number_format($r['paid'],2);
+            }
+
+            if(!isset($n)){
+                $n = 1;
+            }else{
+                $n = $n + 1;
+            }
+
+            $data.= "
+                <tr>
+                    <th>{$n}</th>
+                    <td>{$name}</td>
+                    <td>{$admission}</td>
+                    <td>{$yr}</td>
+                    <td>{$semester}</td>
+                    <td>{$level}</td>
+                    <td>{$ref}</td>
+                    <td class='color-primary'>{$amt}</td>
+                </tr>
+            ";
+        }
+    }
+    return $data;
+}
+
+function token_sheet($response){
     $data ="";
     if($response == false){
         $data ="";
