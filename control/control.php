@@ -43,7 +43,10 @@ function __webpage($conn,$template,$lbl,$req){
     switch($req['route']){
 
         case"dashboard";
-            require($template['main']);
+
+            header("location: ?route=student&ui=list&status=1");
+
+            //require($template['main']);
         break;
 
         case"student";
