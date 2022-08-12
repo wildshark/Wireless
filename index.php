@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 include("control/global.php");
 include("control/function.php");
 include("control/control.php");

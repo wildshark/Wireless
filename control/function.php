@@ -8,6 +8,19 @@ function combobox($str){
     }
     return $out;
 }
+function GenrateToken($n){
+   $count = 0;
+   $s="";
+    while ( true ) {      
+        $count++;
+            $id = rand();
+            $psd = uniqid(); 
+            $s.="INSERT INTO `internet_token`(`user`, `utoken`) VALUES ('$id','$psd');";
+        if ( $count == $n )return $s;
+    }
+}
+
+
 
 function SendSMS($to,$message){
 

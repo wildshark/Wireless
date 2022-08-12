@@ -19,7 +19,6 @@
     <title>GhanaCUC Wireless</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <link href="assets/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link href="main/css/style.css" rel="stylesheet">
     <script src="main/js/modernizr-3.6.0.min.js"></script>
@@ -255,22 +254,62 @@
                     </div>
                     <div class="col p-0">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Table</a>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">From</a>
                             </li>
-                            <li class="breadcrumb-item active">Datatable</li>
+                            <li class="breadcrumb-item active">Basic</li>
                         </ol>
                     </div>
                 </div>
-                <!-- row -->
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Data Table</h4>
+                                <h4 class="card-title">Vertical Form</h4>
+                                <div class="basic-form">
+                                    <form action="index.php" method="post">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-3">
+                                                <label>Generate Token</label>
+                                                <input type="text" name="ref" class="form-control" value="<?=$ref?>" placeholder="Bill Number">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label>Academic Year</label>
+                                                <input type="text" name="year" class="form-control" value="<?=$year?>" placeholder="Year eg. 2022/2023">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label>Semester</label>
+                                                <select name="semester" class="form-control">
+                                                    <option selected="selected"><?=$semester?></option>
+                                                    <?=combobox($_SEMESTER)?>
+                                                </select>
+                                            </div>
+                                        </div>                                        
+                                        <button type="submit" name="submit" value="<?=$btn?>" class="btn btn-dark">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4>Table Striped</h4>
+                                </div>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered zero-configuration">
+                                    <table class="table table-striped">
                                         <thead>
-                                            <?=$table_header?>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Admission</th>
+                                                <th>Yr</th>
+                                                <th>Semester</th>
+                                                <th>Level</th>
+                                                <th>Ref</th>
+                                                <th>Amount</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <?=$datasheet?>
@@ -297,9 +336,6 @@
     <script src="assets/plugins/common/common.min.js"></script>
     <!-- Custom script -->
     <script src="main/js/custom.min.js"></script>
-    <script src="assets/plugins/tables/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
-    <script src="assets/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
 </body>
 
 </html>

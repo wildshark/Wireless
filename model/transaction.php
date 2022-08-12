@@ -1,6 +1,12 @@
 <?php
 class transaction{
 
+    public static function generate_pin($conn,$request){
+
+        $stmt = $conn->prepare($sql);
+        return $stmt->execute();
+    }
+
     public static function add_bill($conn,$request){
 
         $sql ="INSERT INTO `fees_ledger`(`student_id`, `tran_clock`, `tran_date`, `semester_id`, `academic_yr`, `level_id`, `ref`, `bill`) VALUES (? ,?, ?, ?, ?, ?, ?,?)";
