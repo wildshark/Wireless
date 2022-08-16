@@ -264,24 +264,17 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Vertical Form</h4>
+                                <h4 class="card-title">Create Token</h4>
                                 <div class="basic-form">
                                     <form action="index.php" method="post">
                                         <div class="form-row">
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-4">
                                                 <label>Generate Token</label>
-                                                <input type="text" name="ref" class="form-control" value="<?=$ref?>" placeholder="Bill Number">
+                                                <input type="text" name="generate-token" class="form-control" placeholder=" Number of token">
                                             </div>
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-4">
                                                 <label>Academic Year</label>
-                                                <input type="text" name="year" class="form-control" value="<?=$year?>" placeholder="Year eg. 2022/2023">
-                                            </div>
-                                            <div class="form-group col-md-3">
-                                                <label>Semester</label>
-                                                <select name="semester" class="form-control">
-                                                    <option selected="selected"><?=$semester?></option>
-                                                    <?=combobox($_SEMESTER)?>
-                                                </select>
+                                                <input type="text" name="academic-year" class="form-control" placeholder="Year eg. 2022/2023">
                                             </div>
                                         </div>                                        
                                         <button type="submit" name="submit" value="<?=$btn?>" class="btn btn-dark">Submit</button>
@@ -302,13 +295,10 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Name</th>
-                                                <th>Admission</th>
-                                                <th>Yr</th>
-                                                <th>Semester</th>
-                                                <th>Level</th>
-                                                <th>Ref</th>
-                                                <th>Amount</th>
+                                                <th>Student</th>
+                                                <th>Username</th>
+                                                <th>Password</th>
+                                                <th>Year</th>
                                             </tr>
                                         </thead>
                                         <tbody>

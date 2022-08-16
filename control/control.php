@@ -186,35 +186,46 @@ function __webpage($conn,$template,$lbl,$req){
                 $mname = $student['mname'];
                 $sname = $student['sname'];
                 $admission = $student['admission'];
-                $token = $_GET['token'];
                 $mobile = $student['mobile'];
                 $email = $student['email'];
                 $semester = $student['semester_id'];
                 $yrs = $student['academic_yr'];
-                $page = $template['pin-form'];
+                
                  
-                $uTKN[] = $admission;
-                $uTKN[] = $token;
-                $uTKN[] = $yrs;
-                $uTKN[] = $semester;
-                $response =  student::addToken($conn,$uTKN);
-                if($response === false){
-                    echo"<h1>System error contact administrator";
+               
+                $response = student::fetchSingleToken($conn);
+                if($response == false){
+                    echo"<h1>System fails to issue token, contact administrator";
                     exit;
-                }else{
-                    $response = SendSMS($mobile,"Your wireless password is ".$token);
+                }else{ 
+                    $uTKN[] = $admission;
+                    //$uTKN[] = '2022/2030';
+                    $uTKN[] = $response['tokenID'];
+
+                    $usename = $response['user'];
+                    $password = $response['utoken'];
+                    $response = student::updateToken($conn,$uTKN);
+                    if($response === false){
+                        echo"<h1>System error contact administrator";
+                        exit;
+                    }else{
+                        $text = "Your wireless\nusername:".$usename."\nPassword:".$password;
+                        $response = SendSMS($mobile,$text);
+                        $page = $template['pin-form'];
+                    }
                 }
             }
             require($page);
         break;
 
         case"token";
-            if($req['ui'] ==="list"){
-
+            if($req['ui'] ==="create"){
+                $data = student::fetch_genrated_token($conn);
+                $datasheet = generation_token_sheet($data);
+                $btn ="create-token";
+                require($template['genrate']);
             }elseif($req['ui'] ==="export"){
                 require($template['export-form']);
-            }elseif($req['ui'] ==="export2"){
-
             }
         break;
 
@@ -377,6 +388,19 @@ function __moducles($conn,$template,$lbl,$req){
             $response = student::fetchtoken($conn,$yr,$sem);
             var_dump($response);
             exit;
+        break;
+
+        case"create-token";
+            $token = GenrateToken($req);
+            if(FALSE == student::addToken($conn,$token)){
+                $url['route'] = "token";
+                $url['ui'] ="create";
+                $url['status'] =100;
+            }else{
+                $url['route'] = "token";
+                $url['ui'] ="create";
+                $url['status'] =200;
+            }
         break;
     }
     return $url;

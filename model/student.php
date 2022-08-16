@@ -52,9 +52,36 @@ class student{
 
     public static function addToken($conn,$request){
 
-        $sql ="INSERT INTO `internet_token`(`student_index`, `utoken`, `acd_yr`, `semester`) VALUES (?,?,?,?)";
+        $stmt = $conn->prepare($request);
+        return $stmt->execute();
+    }
+
+    public static function updateToken($conn,$request){
+
+        $sql="UPDATE `internet_token` SET `student_index` =? WHERE `tokenID` =?";
         $stmt = $conn->prepare($sql);
-        return $stmt->execute($request);
+        $stmt->execute($request);
+        return $conn->lastInsertId();
+    }
+
+    public static function fetchSingleToken($conn){
+
+        $sql="SELECT internet_token.* FROM internet_token WHERE internet_token.student_index IS NULL";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public static function fetch_genrated_token($conn){
+
+        $sql="SELECT * FROM `internet_token` LIMIT 0,1000";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
     }
 
     public static function fetchtoken($conn,$acd_yr,$semester){

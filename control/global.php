@@ -19,7 +19,8 @@ $_TEMPLATE = array(
     "bill-form"=>"template/bill.php",
     "payment-form"=>"template/payment.php",
     "pin-form"=>"template/pin.php",
-    "export-form"=>"template/export.php"
+    "export-form"=>"template/export.php",
+    "genrate"=>"template/genrate.php"
 );
 
 $_REGLION=[
@@ -51,6 +52,7 @@ function menu(){
                 </li>
             </ul>
         </li>
+        <li><a href='?route=token&ui=create'><i class='mdi mdi-widgets'></i> <span class='nav-text'>Generate Token</span></a></li>
         <li><a href='?route=token&ui=export'><i class='mdi mdi-widgets'></i> <span class='nav-text'>Export Token</span></a></li>
         <!--li><a class='has-arrow' href='#' aria-expanded='false'><i class='mdi mdi-email'></i> <span class='nav-text'>Token</span></a>
             <ul aria-expanded='false'>

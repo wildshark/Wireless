@@ -8,19 +8,20 @@ function combobox($str){
     }
     return $out;
 }
-function GenrateToken($n){
-   $count = 0;
-   $s="";
+
+function GenrateToken($str){
+    $n = $str['generate-token'];
+    $yr = $str['academic-year'];
+    $count = 0;
+    $s="";
     while ( true ) {      
         $count++;
             $id = rand();
             $psd = uniqid(); 
-            $s.="INSERT INTO `internet_token`(`user`, `utoken`) VALUES ('$id','$psd');";
+            $s.="INSERT INTO `internet_token`(`user`, `utoken`,`acad_yr`) VALUES ('$id','$psd','$yr');";
         if ( $count == $n )return $s;
     }
 }
-
-
 
 function SendSMS($to,$message){
 
@@ -316,6 +317,41 @@ function token_sheet($response){
                     <td>{$level}</td>
                     <td>{$ref}</td>
                     <td class='color-primary'>{$amt}</td>
+                </tr>
+            ";
+        }
+    }
+    return $data;
+}
+
+function generation_token_sheet($response){
+    $data ="";
+    if($response == false){
+        $data ="";
+    }else{
+        
+        foreach($response as $r){
+            if(!isset($n)){
+                $n = 1;
+            }else{
+                $n = $n + 1;
+            }
+
+            $usr = $r['user'];
+            $pwd = $r['utoken'];
+            $yr = $r['acad_yr'];
+            if(!isset($r['student_index'])){
+                $student = "Not Taken";
+            }else{
+                $student = $r['student_index'];
+            }
+            $data.= "
+                <tr>
+                    <th>{$n}</th>
+                    <td>{$student}</td>
+                    <td>{$usr}</td>
+                    <td>{$pwd}</td>
+                    <td>{$yr}</td>
                 </tr>
             ";
         }

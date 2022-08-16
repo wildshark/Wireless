@@ -282,16 +282,19 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Entry Year</label>
+                                            <div class="form-group col-md-4">
+                                                <label>Index</label>
                                                 <input type="text" name="year" class="form-control" value="<?=$admission?>" placeholder="Entry Year">
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Admission Index</label>
-                                                <input type="text" name="admission" class="form-control" value="<?=$token?>" placeholder="Admission Index">
+                                            <div class="form-group col-md-4">
+                                                <label>Username</label>
+                                                <input type="text" name="year" class="form-control" value="<?=$usename?>" placeholder="Entry Year">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Password</label>
+                                                <input type="text" name="year" class="form-control" value="<?=$password?>" placeholder="Entry Year">
                                             </div>
                                         </div>                                   
-                                        <button type="submit" name="submit" value="<?=$btn?>" class="btn btn-dark">Submit</button>
                                     </form>
                                 </div>
                             </div>
