@@ -55,7 +55,3 @@ To implement WiFi voucher authentication in your organization, follow the steps 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to use this README as a template for introducing your WiFi voucher authentication system. You can customize it further based on your specific implementation details and features. If you have any questions or need further assistance, please don't hesitate to reach out. Happy coding!
